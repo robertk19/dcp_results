@@ -1,12 +1,21 @@
 "use client";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { DateSelector } from "./DatePicker";
 
 import { styles } from "../styles";
 
+interface DateConstructor {
+  startDate: Date;
+}
+
 const TextArea = () => {
   const formRef = useRef();
+  const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -59,19 +68,13 @@ const TextArea = () => {
                     className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
                   />
                 </label>
+
                 <label className="flex flex-col">
                   <span className="text-white font-medium mb-4">
                     <strong>Step 2: </strong>Enter your date of birth
                     [yyyy-mm-dd eg 1970-03-21]
                   </span>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="What's your web address?"
-                    className="bg-tertiary py-4 px-6 placeholder:text-secondary text-gray-90 rounded-lg outline-none border-none font-medium"
-                  />
+                  <DateSelector />
                 </label>
                 <label className="flex flex-col">
                   <span className="text-white font-medium mb-4">
